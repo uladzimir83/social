@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    &__bar {
+        display: flex;
+        padding: 20px;
+        background-color: #d3f1ff;
+    }
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    width: 64px;
+    height: 64px;
+    font-family: Nunito, sans-serif;
+    font-size: 30px;
+    color:#397a93;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin-right: 20px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
