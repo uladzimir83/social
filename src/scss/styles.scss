@@ -36,3 +36,14 @@
     margin: 0 auto;
     padding: 0 15px;
 }
+
+.main__wrapper {
+    display: grid;
+    grid-template-columns: minmax(auto, 200px) 1fr;
+    grid-column-gap: 20px;
+}
+
+.pages__nav {
+    padding: 20px;
+    background-color: skyblue;
+}
