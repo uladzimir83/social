@@ -1,6 +1,6 @@
 
-import Header from './parts/Header';
-import MainPart from './parts/MainPart/MainPart';
+import Header from './components/Header';
+import MainPart from './components/MainPart/MainPart';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './scss/styles.scss';
 

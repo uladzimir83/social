@@ -9,13 +9,13 @@ function NavBar(props) {
                 <Link className="pages__nav__link" to="Profile">Profile</Link>
             </div>
             <div className="pages__nav__item">
-                <Link className="pages__nav__link" to="Profile">Dialogs</Link>
+                <Link className="pages__nav__link" to="Dialogs">Dialogs</Link>
             </div>
             <div className="pages__nav__item">
-                <Link className="pages__nav__link" to="Profile">News</Link>
+                <Link className="pages__nav__link" to="News">News</Link>
             </div>
             <div className="pages__nav__item">
-                <Link className="pages__nav__link" to="Profile">Videos</Link>
+                <Link className="pages__nav__link" to="Videos">Videos</Link>
             </div>
         </nav>
     )
