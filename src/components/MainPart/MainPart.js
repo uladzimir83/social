@@ -8,7 +8,7 @@ function MainPart(props) {
             <div className="container">
                 <div className="main__wrapper">
                     <NavBar />
-                    <Content />
+                    <Content store={props.store} />
                 </div>
             </div>
         </main>
