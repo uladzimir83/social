@@ -5,7 +5,7 @@ function ProfileGallary() {
     return (
         <div className="profile__data__gallery">
             <h2 className="profile__title">My Gallery</h2>
-            <div className="profile__gallery__grid">
+            <div className="profile__data__gallery__grid">
                 {gallery.map(function(item, idx) {
                     return (
                     <div className="gallery__item" key={idx}><img src={item.imageUrl} alt={item.description} /></div>

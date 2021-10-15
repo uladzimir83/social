@@ -34,7 +34,7 @@ function ProfileData(props) {
                     <span className="profile__data__label">Position:</span> <span>{props.store.position}</span>
                 </div>
 
-                <div className="toggle__profile__data" onClick={toggleInfo}>{toggler.text}</div>
+                <div className="profile__data__item__toggler" onClick={toggleInfo}>{toggler.text}</div>
 
                 <div className="profile__data__item">
                     <span className="profile__data__label">Marital status:</span> <span>{props.store.maritalStatus}</span>
