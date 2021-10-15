@@ -1,6 +1,7 @@
 import React from 'react';
 import usersPhoto from '../../../img/photo.jpg';
 import ProfileData from './ProfileData';
+import ProfileGallary from './ProfileGallary';
 import ProfileVideo from './ProfileVideo';
 
 function Profile(props) {
@@ -12,6 +13,7 @@ function Profile(props) {
                 </div>
                 <ProfileData store={props.store} />
             </div>
+            <ProfileGallary />
             <ProfileVideo />
         </div>
     )
