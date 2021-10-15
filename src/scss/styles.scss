@@ -114,9 +114,13 @@ h1 {
     &:focus {
         outline: none;
     }
-    
+
     &.active {
         outline: none;
         background-color: #b2f0fc;
     }
+}
+
+.profile__data__videos div {
+    min-width: 100%;
 }
