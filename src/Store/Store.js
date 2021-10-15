@@ -4,6 +4,12 @@ let userData = {
     dateOfBirth: '24.11.1999',
     maritalStatus: 'single',
     interests: ['photo', 'travel', 'flowers', 'cooking', 'yoga', 'footbal', 'cats', 'French language'],
+    education: 'University of Toronto',
+    religion: 'catholic',
+    work: 'Fahrenheit Coffee',
+    position: 'barista',
+    animals: 'cat',
+    family: ['mother', 'father', 'sister', 'brother'],
 }
 
 export let gallery = [
