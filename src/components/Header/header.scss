@@ -1,0 +1,28 @@
+.header {
+    margin-bottom: 20px;
+    padding: 15px 0;
+    background-color: #d3f1ff;
+    box-shadow: 0 1px 7px 0 rgba(135, 206, 235, .7);
+
+    &__bar {
+        display: flex;
+    }
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    font-family: Nunito, sans-serif;
+    font-size: 30px;
+    color:#397a93;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin-right: 20px;
+    }
+}
