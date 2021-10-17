@@ -1,0 +1,21 @@
+.pages__nav {
+    position: sticky;
+    top: 15px;
+    padding: 20px;
+    border-radius: 7px;
+    background-color: aliceblue;
+    box-shadow: 0 1px 7px 0 rgba(135, 206, 235, .7);
+}
+
+.pages__nav__link {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 2;
+    color: slateblue;
+    text-decoration-color: transparent;
+    transition: all .3s;
+    &:hover {
+        text-decoration-color: slateblue;
+    }
+}
