@@ -1,5 +1,5 @@
 
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import MainPart from './components/MainPart/MainPart';
 import {BrowserRouter} from 'react-router-dom';
 import './scss/styles.scss';
