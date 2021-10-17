@@ -1,3 +1,7 @@
+.profile__box {
+    margin-bottom: 30px;
+}
+
 .profile__info {
     display: grid;
     grid-template-columns: minmax(auto, 200px) 1fr;
@@ -42,6 +46,8 @@
 .profile__title {
     position: relative;
     margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 600;
 
     &:after {
         position: absolute;
@@ -65,6 +71,7 @@
 
 .profile__data__item__toggler {
     margin-bottom: 18px;
+    color: #6a5acd;
     cursor: pointer;
 }
 
@@ -107,4 +114,45 @@
     div {
         min-width: 100%;
     }
+}
+
+.profile__data__btn {
+    display: inline-block;
+    margin-top: 15px;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #6a5acd;
+    background-color: transparent;
+}
+
+.profile__friends__list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.profile__friends__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__friends__photo {
+    overflow: hidden;
+    width: 78px;
+    height: 78px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+
+.profile__friends__img {
+    width: 100%;
+    height: 100%;
+}
+
+.profile__friends__name {
+    padding: 0 10px;
+    font-size: 16px;
+    text-align: center;
 }
