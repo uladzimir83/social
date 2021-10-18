@@ -5,6 +5,7 @@ import ProfileGallary from './ProfileGallary';
 import ProfileVideo from './ProfileVideo';
 import ProfileFriends from './ProfileFriends';
 import '../Profile/profile.scss';
+import ProfileAddNews from './ProfileAddNews';
 
 function Profile(props) {
     return (
@@ -15,6 +16,7 @@ function Profile(props) {
                 </div>
                 <ProfileData store={props.store} />
             </div>
+            <ProfileAddNews />
             <ProfileFriends />
             <ProfileGallary />
             <ProfileVideo />
