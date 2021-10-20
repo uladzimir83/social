@@ -72,4 +72,13 @@ export let gallery = [
     }
 ]
 
+export let news = [
+
+]
+
+export let addNews = (newsItem) => {
+    news.push(newsItem)
+    console.log(news);
+}
+
 export default userData;
