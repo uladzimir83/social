@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import Profile from '../Profile/Profile';
 import Dialogs from '../Dialogs/Dialogs';
 import Images from '../Images/Images';
@@ -11,13 +11,15 @@ import Friends from '../Friends/Friends';
 function Content(props) {
     return (
         <div className="main__content">
-            <Route exact path='/' component={Home}></Route>
-            <Route path='/Profile'><Profile store={props.store}></Profile></Route>
-            <Route path='/Dialogs' component={Dialogs} />
-            <Route path='/Friends' component={Friends} />
-            <Route path='/Images' component={Images} />
-            <Route path='/Videos' component={Videos} />
-            <Route path='/News' component={News} />
+            <Switch>
+                <Route exact path='/' component={Home}></Route>
+                <Route path='/Profile'><Profile store={props.store}></Profile></Route>
+                <Route path='/Dialogs' component={Dialogs} />
+                <Route path='/Friends' component={Friends} />
+                <Route path='/Images' component={Images} />
+                <Route path='/Videos' component={Videos} />
+                <Route path='/News' component={News} />
+            </Switch>
         </div>
     )
 }
