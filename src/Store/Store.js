@@ -91,9 +91,13 @@ export let addNews = (newsItem) => {
         return [day, month, year].join(' ');
     }
 
-    newsItem = {...newsItem, date: formatDate()}
-    news.push(newsItem)
-    console.log(news);
+    newsItem = {...newsItem, date: formatDate(), photo: userData.photo, name: userData.userName, location: userData.location}
+    news.push(newsItem);
+    rerenderEntireTree();
 }
 
 export default userData;
+
+export const subscriber = (observer) => {
+    rerenderEntireTree = observer;
+}
