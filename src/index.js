@@ -3,8 +3,15 @@ import ReactDOM from 'react-dom';
 import './scss/styles.scss';
 import App from './App';
 import store from './Store/Store';
+import {subscriber} from './Store/Store';
 
-ReactDOM.render(
-    <App store={store} />,
-  document.getElementById('root')
-);
+let rerenderEntireTree = () => {
+  ReactDOM.render(
+      <App store={store} />,
+    document.getElementById('root')
+  );
+}
+
+rerenderEntireTree();
+
+subscriber(rerenderEntireTree);
