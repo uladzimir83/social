@@ -1,5 +1,8 @@
+let rerenderEntireTree;
+
 let userData = {
     userName: 'Olga Ivanova',
+    photo: 'https://randomuser.me/api/portraits/women/57.jpg',
     location: 'Toronto, Canada',
     dateOfBirth: '24.11.1999',
     maritalStatus: 'single',
@@ -73,7 +76,7 @@ export let gallery = [
 ]
 
 export let news = [
-
+    
 ]
 
 export let addNews = (newsItem) => {
