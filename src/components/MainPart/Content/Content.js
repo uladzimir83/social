@@ -13,12 +13,12 @@ function Content(props) {
         <div className="main__content">
             <Switch>
                 <Route exact path='/' component={Home}></Route>
-                <Route path='/Profile'><Profile store={props.store}></Profile></Route>
+                <Route path='/Profile'><Profile store={props.store} /></Route>
                 <Route path='/Dialogs' component={Dialogs} />
                 <Route path='/Friends' component={Friends} />
                 <Route path='/Images' component={Images} />
                 <Route path='/Videos' component={Videos} />
-                <Route path='/News' component={News} />
+                <Route path='/News' component={News} ><News store={props.store} /></Route>
             </Switch>
         </div>
     )
