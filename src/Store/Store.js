@@ -1,6 +1,8 @@
+import ProfileStatus from "../components/MainPart/Profile/ProfileStatus";
+
 let rerenderEntireTree;
 
-let userData = {
+export let userData = {
     userName: 'Olga Ivanova',
     photo: 'https://randomuser.me/api/portraits/women/57.jpg',
     location: 'Toronto, Canada',
@@ -76,7 +78,51 @@ export let gallery = [
 ]
 
 export let news = [
-    
+    {
+        name: 'Oleg Protas',
+        location: 'Vancouver, Canada',
+        photo: 'https://randomuser.me/api/portraits/men/2.jpg',
+        date: '22 March 2020',
+        title: 'Посетил дельфинарий',
+        topic: 'дельфины, природа, отдых',
+        text: 'Посетил городской дельфинарий. Было очень интересно и позновательно. Посмотрел шоу-программу - это очень красиво',
+    },
+    {
+        name: 'Jane Done',
+        location: 'Seatle, USA',
+        photo: 'https://randomuser.me/api/portraits/women/35.jpg',
+        date: '14 February 2020',
+        title: 'Начала заниматься йогой',
+        topic: 'здоровье, спорт, отдых',
+        text: 'Начала заниматься йогой. Это просто великолепно. Занимаюсь с инструктором и мне очень нравиться. Стало легче на душе и в теле. А самое главное я теперь люблю просыпаться по утрам и делать зарядку. Это очень помогает продуктивно провести свой день. Всем очень советую.',
+    },
+    {
+        name: 'James Bond',
+        location: 'Westminster, Great BRitain',
+        photo: 'https://randomuser.me/api/portraits/men/99.jpg',
+        date: '23 January 2020',
+        title: 'Встретился с королевой по вопросом безопасности страны',
+        topic: 'работа, 007, астон мартин',
+        text: 'Встретился с ее величеством Королевой Англии - Елизаветой. Обсудили вчерашний матч Арсенала против Челси. Слегка обсудили вопросы безопасности в стране. Устроили легкое чаепитие.... на этот раз без виски.',
+    },
+    {
+        name: 'Oleg Protas',
+        location: 'Vancouver, Canada',
+        photo: 'https://randomuser.me/api/portraits/men/2.jpg',
+        date: '22 March 2020',
+        title: 'Посетил дельфинарий',
+        topic: 'дельфины, природа, отдых',
+        text: 'Посетил городской дельфинарий. Было очень интересно и позновательно. Посмотрел шоу-программу - это очень красиво',
+    },
+    {
+        name: 'Jane Done',
+        location: 'Seatle, USA',
+        photo: 'https://randomuser.me/api/portraits/women/35.jpg',
+        date: '14 February 2020',
+        title: 'Начала заниматься йогой',
+        topic: 'здоровье, спорт, отдых',
+        text: 'Начала заниматься йогой. Это просто великолепно. Занимаюсь с инструктором и мне очень нравиться. Стало легче на душе и в теле. А самое главное я теперь люблю просыпаться по утрам и делать зарядку. Это очень помогает продуктивно провести свой день. Всем очень советую.',
+    },
 ]
 
 export let addNews = (newsItem) => {
