@@ -4,13 +4,11 @@ import { news } from '../../../Store/Store';
 import SingleNews from '../News/SingleNews';
 
 function ProfileLastNews() {
-    let it = news;
-    console.log(it.length);
     return (
         <div className="profile__last_news profile__box">
-            <h2 className="profile__title">Latest News</h2>
+            <h2 className="profile__title">My latest News</h2>
         <div>
-        {it.length > 0 ? <SingleNews news={it[it.length - 1]}/> : 'nothing'
+        {news.length > 0 ? <SingleNews news={news[news.length - 1]}/> : 'nothing'
             }
         </div>
               

@@ -2,7 +2,6 @@ import React from 'react';
 import '../News/news.scss';
 
 function SingleNews(props) {
-    console.log(props.news);
     return (
         <div className="single-news__wrapper">
             <div className="single-news__author">
