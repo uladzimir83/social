@@ -5,9 +5,9 @@ import {BrowserRouter} from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'; 
 import './scss/styles.scss';
-import { initialReducer } from './reducers/initialReducer';
+import combineReducers from './reducers/combineReducers';
 
-const store = createStore(initialReducer);
+const store = createStore(combineReducers);
 
 function App(props) {
 

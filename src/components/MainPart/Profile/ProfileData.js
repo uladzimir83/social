@@ -17,42 +17,42 @@ function ProfileData(props) {
     return (
         <div className="profile__data">
             <div className="profile__data__header">
-                <h1>{props.store.userName}</h1>
+                <h1>{props.userData.userName}</h1>
                 <ProfileStatus />
             </div>
             <div className={profileDataVisible.join(' ')}>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Location:</span> <span>{props.store.location}</span>
+                    <span className="profile__data__label">Location:</span> <span>{props.userData.location}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Date of birth:</span> <span>{props.store.dateOfBirth}</span>
+                    <span className="profile__data__label">Date of birth:</span> <span>{props.userData.dateOfBirth}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Place of work:</span> <span>{props.store.work}</span>
+                    <span className="profile__data__label">Place of work:</span> <span>{props.userData.work}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Position:</span> <span>{props.store.position}</span>
+                    <span className="profile__data__label">Position:</span> <span>{props.userData.position}</span>
                 </div>
 
                 <div className="profile__data__item__toggler" onClick={toggleInfo}>{toggler.text}</div>
 
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Marital status:</span> <span>{props.store.maritalStatus}</span>
+                    <span className="profile__data__label">Marital status:</span> <span>{props.userData.maritalStatus}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Interests:</span> <span>{props.store.interests.join(', ')}</span>
+                    <span className="profile__data__label">Interests:</span> <span>{props.userData.interests.join(', ')}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Education:</span> <span>{props.store.education}</span>
+                    <span className="profile__data__label">Education:</span> <span>{props.userData.education}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Religion:</span> <span>{props.store.religion}</span>
+                    <span className="profile__data__label">Religion:</span> <span>{props.userData.religion}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Animals:</span> <span>{props.store.animals}</span>
+                    <span className="profile__data__label">Animals:</span> <span>{props.userData.animals}</span>
                 </div>
                 <div className="profile__data__item">
-                    <span className="profile__data__label">Family:</span> <span>{props.store.family.join(', ')}</span>
+                    <span className="profile__data__label">Family:</span> <span>{props.userData.family.join(', ')}</span>
                 </div>
             </div>
         </div>

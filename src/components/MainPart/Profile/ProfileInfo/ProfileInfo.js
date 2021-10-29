@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProfileData from '../ProfileData';
 
-export default class ProfileInfo extends Component {
-
-    render() {
-        return (
-            <div className="profile__info profile__box">
-                <div className="profile__photo">
-                    <img src={props.store.photo} alt="user" />
-                </div>
-                <ProfileData store={props.store} />
+function ProfileInfo(props) {
+    return (
+        <div className="profile__info profile__box">
+            <div className="profile__photo">
+                <img src={props.userData.photo} alt="user" />
             </div>
-        )
-    }
+            <ProfileData userData={props.userData} />
+        </div>
+    )
 }
 
-
+export default ProfileInfo;
