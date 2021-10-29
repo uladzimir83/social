@@ -1,4 +1,4 @@
-import ProfileStatus from "../components/MainPart/Profile/ProfileStatus";
+
 
 let rerenderEntireTree;
 
@@ -15,6 +15,7 @@ export let userData = {
     position: 'barista',
     animals: 'cat',
     family: ['mother', 'father', 'sister', 'brother'],
+    status: 'set status',
 }
 
 export let friends = [
