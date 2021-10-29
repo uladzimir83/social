@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 
-function ProfileStatus() {
-    let [status, setStatus] = useState({text:'set status', state: false});
+function ProfileStatus(props) {
+    let [state, setState] = useState(false);
 
     let statusClasses = ['status__input'];
 
     let setStatusByKeyEvent = (e) => {
         if (e.key === 'Enter') {
-            setStatus({...status, state: false});
+            setState(false);
             e.target.blur();
         }
     }
 
-    if (status.state) {
+    if (state) {
         statusClasses.push('active')
     };
 
@@ -20,10 +20,10 @@ function ProfileStatus() {
         <div className="profile__status">
             <input 
                 className={statusClasses.join(' ')} 
-                type="text" value={status.text} 
-                onBlur={() => {setStatus({...status, state: false})}} 
-                onFocus={() => {setStatus({...status, state: true})}} 
-                onChange={(e) => {setStatus({...status, text: e.target.value})}}
+                type="text" value={props.userStatus} 
+                onBlur={() => {setState(false)}} 
+                onFocus={() => {setState(true)}} 
+                onChange={(e) => {props.setStatus(e.target.value)}}
                 onKeyDown={setStatusByKeyEvent} />
         </div>
     )
