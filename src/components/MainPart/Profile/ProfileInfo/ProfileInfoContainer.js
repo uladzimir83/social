@@ -1,12 +1,5 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import ProfileInfo from './ProfileInfo';
-
-function ProfileInfoContainer(props) {
-    return (
-        <ProfileInfo userData={props.userData}/>
-    )
-}
 
 const mapStateToProps = (state) => {
     return {
@@ -14,4 +7,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ProfileInfoContainer);
+const ProfileInfoContainer = connect(mapStateToProps)(ProfileInfo);
+
+export default ProfileInfoContainer;

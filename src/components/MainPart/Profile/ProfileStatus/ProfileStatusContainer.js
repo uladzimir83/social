@@ -1,13 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { setProfileStatus } from '../../../../actions/actions';
 import ProfileStatus from './ProfileStatus';
-
-function ProfileStatusContainer(props) {
-    return (
-        <ProfileStatus userStatus={props.userStatus} setStatus={props.setStatus} />
-    )
-}
 
 const mapStateToProps = (state) => {
     return {
@@ -23,4 +16,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileStatusContainer);
+const ProfileStatusContainer =  connect(mapStateToProps, mapDispatchToProps)(ProfileStatus);
+
+export default ProfileStatusContainer;
