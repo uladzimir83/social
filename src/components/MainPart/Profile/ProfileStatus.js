@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProfileStatus } from '../../../actions/actions';
 
-function ProfileStatus(props) {
+function ProfileStatus() {
     let [state, setState] = useState(false);
+    
+    let dispatch = useDispatch();
+    let statusProfile = useSelector(state => state.profileData.status);
 
-    let statusClasses = ['status__input'];
+    let addStatus = (val) => {
+        dispatch(setProfileStatus(val));
+    }
 
     let setStatusByKeyEvent = (e) => {
         if (e.key === 'Enter') {
@@ -11,6 +18,8 @@ function ProfileStatus(props) {
             e.target.blur();
         }
     }
+
+    let statusClasses = ['status__input'];
 
     if (state) {
         statusClasses.push('active')
@@ -20,10 +29,10 @@ function ProfileStatus(props) {
         <div className="profile__status">
             <input 
                 className={statusClasses.join(' ')} 
-                type="text" value={props.userStatus} 
+                type="text" value={statusProfile} 
                 onBlur={() => {setState(false)}} 
                 onFocus={() => {setState(true)}} 
-                onChange={(e) => {props.setStatus(e.target.value)}}
+                onChange={(e) => {addStatus(e.target.value)}}
                 onKeyDown={setStatusByKeyEvent} />
         </div>
     )
