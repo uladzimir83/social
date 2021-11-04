@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer';
+import ProfileStatus from './ProfileStatus';
 
 function ProfileData(props) {
     let [toggler, setToggler] = useState({text: 'show more info...', state: false});
@@ -18,7 +18,7 @@ function ProfileData(props) {
         <div className="profile__data">
             <div className="profile__data__header">
                 <h1>{props.userData.userName}</h1>
-                <ProfileStatusContainer />
+                <ProfileStatus />
             </div>
             <div className={profileDataVisible.join(' ')}>
                 <div className="profile__data__item">
