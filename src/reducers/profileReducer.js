@@ -1,6 +1,5 @@
 import { ADD_PROFILE_DATA } from '../actions/actions';
 import { ADD_PROFILE_STATUS } from '../actions/actions';
-import { ADD_PROFILE_NEWS } from '../actions/actions';
 import { userData } from '../Store/Store';
 
 export const profileReducer = (state = userData, action) => {
@@ -13,10 +12,6 @@ export const profileReducer = (state = userData, action) => {
             return {
                 ...state, status: action.status
             };
-        case ADD_PROFILE_NEWS:
-            return {
-                ...state, news: action.news
-            }
         default:
             return state;
     }
