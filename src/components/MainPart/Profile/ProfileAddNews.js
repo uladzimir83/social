@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProfileNews } from '../../../actions/actions';
-import news from '../../../../img/news.svg';
+import news from '../../../img/news.svg';
 import { getCurrentDate } from '../../../lib/getCurrentDate';
 
 function ProfileAddNews(props) {
