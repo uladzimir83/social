@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
-import news from '../../../img/news.svg';
-import { addNews } from '../../../Store/Store';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProfileNews } from '../../../actions/actions';
+import news from '../../../../img/news.svg';
+import { getCurrentDate } from '../../../lib/getCurrentDate';
 
-function ProfileAddNews() {
-    let [newsFormState, setNewsFormState] = useState(false);
+function ProfileAddNews(props) {
+    let [newsFormVisible, setNewsFormVisible] = useState(false);
     let [newsData, setNewsData] = useState({title: '', topic: '', text: ''});
+    let dispatch = useDispatch();
+    let newsAuthor = useSelector(state => state.profileData.userName);
 
-    let toggleNewsForm = () => {
-        setNewsFormState(!newsFormState);
+    let toggleNewsFormVisibility = () => {
+        setNewsFormVisible(!newsFormVisible);
     }
 
     let newsFormClasses = ['news__data',];
 
-    if (newsFormState) {
+    if (newsFormVisible) {
         newsFormClasses.push('is-active');
     }
 
     function createNews() {
-        addNews(newsData);
+        let news = {...newsData, date: getCurrentDate(), author: newsAuthor};
+        dispatch(addProfileNews(news));
         setNewsData({title: '', topic: '', text: ''});
     }
 
     return (
         <div className="news__form profile__box">
-            <div className="news__form__head" onClick={toggleNewsForm} >
+            <div className="news__form__head" onClick={toggleNewsFormVisibility} >
                 <img className="news__form__title__icon" src={news} alt="news title icon" /> Anything new? Add news!
             </div>
             <form className={newsFormClasses.join(' ')} onSubmit={(e) => {e.preventDefault()}}>
@@ -65,5 +70,4 @@ function ProfileAddNews() {
         </div>
     )
 }
-
 export default ProfileAddNews;
