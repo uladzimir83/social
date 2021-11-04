@@ -3,9 +3,9 @@ import ProfileGallary from './ProfileGallary';
 import ProfileVideo from './ProfileVideo';
 import ProfileFriends from './ProfileFriends';
 import '../Profile/profile.scss';
-import ProfileAddNews from './ProfileAddNews';
 import ProfileLastNews from './ProfileLastNews';
 import ProfileInfoContainer from './ProfileInfo/ProfileInfoContainer';
+import ProfileAddNews from './ProfileAddNews';
 
 function Profile(props) {
     return (
