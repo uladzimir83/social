@@ -1,5 +1,3 @@
-import { news } from "../Store/Store";
-
 export const ADD_PROFILE_DATA = 'ADD_PROFILE_DATA',
              ADD_PROFILE_STATUS = 'ADD_PROFILE_STATUS',
              ADD_PROFILE_NEWS = 'ADD_PROFILE_NEWS';
