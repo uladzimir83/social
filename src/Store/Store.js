@@ -1,7 +1,4 @@
 
-
-let rerenderEntireTree;
-
 export let userData = {
     userName: 'Olga Ivanova',
     photo: 'https://randomuser.me/api/portraits/women/57.jpg',
@@ -127,7 +124,3 @@ export let news = [
 ]
 
 export default userData;
-
-export const subscriber = (observer) => {
-    rerenderEntireTree = observer;
-}
