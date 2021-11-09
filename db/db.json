@@ -1,9 +1,8 @@
 {
-    "user": [
-        {
+    "user": {
             "id": 1,
             "login": 1,
-            "userName": "Olga Ivanova",
+            "userName": "Victoria Porter",
             "photo": "https://randomuser.me/api/portraits/women/57.jpg",
             "location": "Toronto, Canada",
             "dateOfBirth": "24.11.1999",
@@ -30,8 +29,7 @@
               "brother"
             ],
             "status": "set status"
-        }
-    ],
+        },
     "auth": {
         "message": "you are not authorized"
     }
