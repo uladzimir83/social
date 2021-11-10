@@ -8,7 +8,7 @@ function ProfileAddNews(props) {
     let [newsFormVisible, setNewsFormVisible] = useState(false);
     let [newsData, setNewsData] = useState({title: '', topic: '', text: ''});
     let dispatch = useDispatch();
-    let newsAuthor = useSelector(state => state.profileData.userName);
+    let newsAuthor = useSelector(state => state.userInfo.userName);
 
     let toggleNewsFormVisibility = () => {
         setNewsFormVisible(!newsFormVisible);
