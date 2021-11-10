@@ -29,8 +29,5 @@
               "brother"
             ],
             "status": "set status"
-        },
-    "auth": {
-        "message": "you are not authorized"
-    }
+        }
   }
