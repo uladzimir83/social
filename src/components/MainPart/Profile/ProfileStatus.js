@@ -1,12 +1,13 @@
+import cn from 'classnames';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setProfileStatus } from '../../../actions/actions';
 
 function ProfileStatus() {
     let [state, setState] = useState(false);
-    
+    let [status, setStatus] = useState('set status');
+
     let dispatch = useDispatch();
-    let statusProfile = useSelector(state => state.profileData.status);
 
     let addStatus = (val) => {
         dispatch(setProfileStatus(val));
@@ -15,24 +16,29 @@ function ProfileStatus() {
     let setStatusByKeyEvent = (e) => {
         if (e.key === 'Enter') {
             setState(false);
+            addStatus(status);
             e.target.blur();
         }
     }
 
-    let statusClasses = ['status__input'];
+    let outFocus = () => {
+        setState(false);
+        addStatus(status);
+    }
 
-    if (state) {
-        statusClasses.push('active')
-    };
+    let statusClasses = cn({
+        'status__input': true,
+        'active': state,
+    });
 
     return (
         <div className="profile__status">
             <input 
-                className={statusClasses.join(' ')} 
-                type="text" value={statusProfile} 
-                onBlur={() => {setState(false)}} 
+                className={statusClasses} 
+                type="text" value={status} 
+                onBlur={() => {outFocus()}}
                 onFocus={() => {setState(true)}} 
-                onChange={(e) => {addStatus(e.target.value)}}
+                onChange={(e) => {setStatus(e.target.value)}}
                 onKeyDown={setStatusByKeyEvent} />
         </div>
     )

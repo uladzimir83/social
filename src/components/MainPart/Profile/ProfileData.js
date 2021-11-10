@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import cn from 'classnames'
 import ProfileStatus from './ProfileStatus';
 
 function ProfileData(props) {
@@ -8,11 +9,10 @@ function ProfileData(props) {
         toggler.state ? setToggler({text: 'show more information...', state: false}) : setToggler({text: 'hide more information...', state: true});
     }
 
-    let profileDataVisible = ['profile__data__body'];
-
-    if (toggler.state) {
-        profileDataVisible.push('is-visible');
-    }
+    let togglerClass = cn({
+        'profile__data__body': true,
+        'is-visible': toggler.state,
+    })
 
     return (
         <div className="profile__data">
@@ -20,7 +20,7 @@ function ProfileData(props) {
                 <h1>{props.userData.userName}</h1>
                 <ProfileStatus />
             </div>
-            <div className={profileDataVisible.join(' ')}>
+            <div className={togglerClass}>
                 <div className="profile__data__item">
                     <span className="profile__data__label">Location:</span> <span>{props.userData.location}</span>
                 </div>
