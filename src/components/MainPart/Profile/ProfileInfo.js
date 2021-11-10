@@ -5,18 +5,18 @@ import { fetchUserData } from '../../../asyncActions/userData';
 import ProfileData from './ProfileData';
 
 function ProfileInfo() {
-    let profile = useSelector(state => state.profileData.user);
+    let profile = useSelector(state => state.userInfo.userInfo);
     let dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchUserData());
     }, []);
-    console.log(profile[0].photo);
+
     return (
         <div className="profile__info profile__box">
             <div className="profile__photo">
-                <img src={profile[0].photo} alt="user" />
+                <img src={profile.photo} alt="user" />
             </div>
-            <ProfileData userData={profile} />
+            {profile.id && <ProfileData userData={profile} />}
         </div>
     )
 }
