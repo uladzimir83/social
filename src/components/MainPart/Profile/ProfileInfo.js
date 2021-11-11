@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { fetchUserData } from '../../../asyncActions/userData';
+import { fetchUserData } from '../../../asyncActions/asyncActions';
 import ProfileData from './ProfileData';
 
 function ProfileInfo() {
@@ -10,7 +10,6 @@ function ProfileInfo() {
     useEffect(() => {
         dispatch(fetchUserData());
     }, []);
-
     return (
         <div className="profile__info profile__box">
             <div className="profile__photo">
