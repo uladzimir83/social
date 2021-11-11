@@ -6,7 +6,7 @@ import { profileReducer } from '../reducers/profileReducer';
 const rootReducer = combineReducers(
     {
       userInfo: profileReducer,
-      profileNews: addNewsReducer,
+      news: addNewsReducer,
     }
 );
 

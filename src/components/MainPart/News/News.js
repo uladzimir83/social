@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SingleNews from './SingleNews';
-import {news} from '../../../Store/Store';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchNews } from '../../../asyncActions/asyncActions';
 
 function News() {
+    let news = useSelector(state => state.news);
+    let dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchNews());
+    }, []);
     return (
         <div className="page__wrapper">
             <h1 className="page__title">News</h1>

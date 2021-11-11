@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProfileNews } from '../../../actions/actions';
+import { setProfileNews } from '../../../actions/actions';
 import news from '../../../img/news.svg';
 import { getCurrentDate } from '../../../lib/getCurrentDate';
 
@@ -22,7 +22,7 @@ function ProfileAddNews(props) {
 
     function createNews() {
         let news = {...newsData, date: getCurrentDate(), author: newsAuthor};
-        dispatch(addProfileNews(news));
+        dispatch(setProfileNews(news));
         setNewsData({title: '', topic: '', text: ''});
     }
 
