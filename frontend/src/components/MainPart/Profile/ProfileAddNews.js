@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setProfileNews } from '../../../actions/actions';
+import { useDispatch } from 'react-redux';
+import { addNews } from '../../../asyncActions/asyncActions';
 import news from '../../../img/news.svg';
-import { getCurrentDate } from '../../../lib/getCurrentDate';
 
 function ProfileAddNews(props) {
     let [newsFormVisible, setNewsFormVisible] = useState(false);
     let [newsData, setNewsData] = useState({title: '', topic: '', text: ''});
     let dispatch = useDispatch();
-    let newsAuthor = useSelector(state => state.userInfo.userName);
 
     let toggleNewsFormVisibility = () => {
         setNewsFormVisible(!newsFormVisible);
@@ -21,8 +19,7 @@ function ProfileAddNews(props) {
     }
 
     function createNews() {
-        let news = {...newsData, date: getCurrentDate(), author: newsAuthor};
-        dispatch(setProfileNews(news));
+        addNews(newsData);
         setNewsData({title: '', topic: '', text: ''});
     }
 
