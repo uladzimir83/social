@@ -1,0 +1,27 @@
+{
+  "name": "social",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "starts": "nodemon backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uladzimir83/social.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uladzimir83/social/issues"
+  },
+  "homepage": "https://github.com/uladzimir83/social#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "description": ""
+}
