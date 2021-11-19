@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNews } from '../../../asyncActions/asyncActions';
 import news from '../../../img/news.svg';
 
@@ -17,11 +17,13 @@ function ProfileAddNews(props) {
     if (newsFormVisible) {
         newsFormClasses.push('is-active');
     }
-
+    
     function createNews() {
-        addNews(newsData);
+        dispatch(addNews(newsData));
         setNewsData({title: '', topic: '', text: ''});
     }
+
+
 
     return (
         <div className="news__form profile__box">
