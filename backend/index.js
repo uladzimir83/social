@@ -114,6 +114,10 @@ app.post('/news', function(req, res) {
     title: req.body.title,
     topic: req.body.topic,
     text: req.body.text,
+    photo: req.body.photo,
+    name: req.body.name,
+    location: req.body.location,
+    date: req.body.date,
   };
 
   allNews.push(news);
