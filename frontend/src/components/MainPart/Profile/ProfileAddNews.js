@@ -10,9 +10,6 @@ function ProfileAddNews(props) {
     let [newsData, setNewsData] = useState({title: '', topic: '', text: ''});
     let userInfo = useSelector(state => state.userInfo);
 
-    let toggleNewsFormVisibility = () => {
-        setNewsFormVisible(!newsFormVisible);
-    }
 
     let classes = cn({
         'news__data': true,
@@ -31,11 +28,9 @@ function ProfileAddNews(props) {
         setNewsData({title: '', topic: '', text: ''});
     }
 
-
-
     return (
         <div className="news__form profile__box">
-            <div className="news__form__head" onClick={toggleNewsFormVisibility} >
+            <div className="news__form__head" onClick={() => {setNewsFormVisible(!newsFormVisible)}} >
                 <img className="news__form__title__icon" src={news} alt="news title icon" /> Anything new? Add news!
             </div>
             <form className={classes} onSubmit={(e) => {e.preventDefault()}}>
