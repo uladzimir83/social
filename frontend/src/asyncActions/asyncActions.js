@@ -1,6 +1,5 @@
 import axios from "axios";
 import { setFullNews, setProfileData, setProfileNews } from "../actions/actions";
-import { getCurrentDate } from "../lib/getCurrentDate";
 
 export const fetchUserData = () => {
     return function(dispatch) {
@@ -17,10 +16,7 @@ export const fetchNews = () => {
     }
 }
 
-export const addNews = (newsData) => (dispatch) => {
-    axios.post('http://localhost:3001/news', newsData)
-    .then((response) => dispatch(setProfileNews(newsData))
-    .catch(err => {
-        console.error(err);
-    })
-)}
+export const addNews = (newsData) => {
+    console.log(newsData);
+    axios.post('http://localhost:3001/news', newsData);
+}

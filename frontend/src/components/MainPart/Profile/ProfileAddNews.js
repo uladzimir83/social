@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { addNews } from '../../../asyncActions/asyncActions';
 import news from '../../../img/news.svg';
 
@@ -19,7 +19,14 @@ function ProfileAddNews(props) {
     }
     
     function createNews() {
-        dispatch(addNews(newsData));
+        let data = {
+            ...newsData, 
+            name: userInfo.userInfo.userName,
+            photo: userInfo.userInfo.photo,
+            location: userInfo.userInfo.location,
+            date: getCurrentDate(),
+        }
+        addNews(data);
         setNewsData({title: '', topic: '', text: ''});
     }
 
