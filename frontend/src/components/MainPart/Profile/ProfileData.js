@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import cn from 'classnames'
+import cn from 'classnames';
 import ProfileStatus from './ProfileStatus';
 
 function ProfileData(props) {

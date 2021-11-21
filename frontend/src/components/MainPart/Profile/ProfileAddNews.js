@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { addNews } from '../../../asyncActions/asyncActions';
 import news from '../../../img/news.svg';
+import cn from 'classnames';
+import { getCurrentDate } from '../../../lib/getCurrentDate';
 
 function ProfileAddNews(props) {
     let [newsFormVisible, setNewsFormVisible] = useState(false);
     let [newsData, setNewsData] = useState({title: '', topic: '', text: ''});
-    let dispatch = useDispatch();
+    let userInfo = useSelector(state => state.userInfo);
 
     let toggleNewsFormVisibility = () => {
         setNewsFormVisible(!newsFormVisible);
     }
 
-    let newsFormClasses = ['news__data',];
+    let classes = cn({
+        'news__data': true,
+        'is-active': newsFormVisible,
+    })
 
-    if (newsFormVisible) {
-        newsFormClasses.push('is-active');
-    }
-    
     function createNews() {
         let data = {
             ...newsData, 
@@ -37,7 +38,7 @@ function ProfileAddNews(props) {
             <div className="news__form__head" onClick={toggleNewsFormVisibility} >
                 <img className="news__form__title__icon" src={news} alt="news title icon" /> Anything new? Add news!
             </div>
-            <form className={newsFormClasses.join(' ')} onSubmit={(e) => {e.preventDefault()}}>
+            <form className={classes} onSubmit={(e) => {e.preventDefault()}}>
                 <div className="news__data__header">
                     <input 
                         type="text" 
