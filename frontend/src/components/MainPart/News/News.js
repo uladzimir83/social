@@ -7,7 +7,6 @@ import { cleanNews } from '../../../actions/actions';
 function News() {
     let news = useSelector(state => state.news);
     let dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchNews());
         return () => {

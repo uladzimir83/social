@@ -1,4 +1,6 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const authRouter = require('./authRouter');
 const cors = require('cors');
 
 const app = express();
@@ -13,9 +15,19 @@ app.use(
     })
 );
 
-app.listen(PORT, () => {
-    console.log('server started on localhost:' + `${PORT}`);
-})
+app.use(express.json());
+app.use('/auth', authRouter);
+
+const start = async () => {
+    try {
+        await mongoose.connect(`mongodb+srv://Uladzimir:HeDiN3093@cluster0.fd4cy.mongodb.net/social?retryWrites=true&w=majority`)
+        app.listen(PORT, () => {
+            console.log('server started on localhost:' + `${PORT}`);
+        })
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 const data = {
     "id": 1,
@@ -121,5 +133,7 @@ app.post('/news', function(req, res) {
   };
 
   allNews.push(news);
-  console.log(allNews);
 });
+
+start();
+
