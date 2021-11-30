@@ -7,6 +7,7 @@ import Videos from '../Videos/Videos';
 import News from '../News/News';
 import Home from '../Home/Home';
 import Friends from '../Friends/Friends';
+import Auth from '../../Header/Auth/Auth';
 
 function Content(props) {
     return (
@@ -19,6 +20,8 @@ function Content(props) {
                 <Route path='/Images' component={Images} />
                 <Route path='/Videos' component={Videos} />
                 <Route path='/News' component={News} ><News store={props.store} /></Route>
+                <Route path='/login' component={Auth} />
+                <Route path='/registration' component={Auth} />
             </Switch>
         </div>
     )
