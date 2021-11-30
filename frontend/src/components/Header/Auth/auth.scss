@@ -1,0 +1,29 @@
+
+.auth__profile {
+    display: none;
+}
+
+.auth__wrapper {
+    padding: 30px;
+}
+
+.auth__link {
+    position: relative;
+    &:last-child {
+        margin-left: 20px;
+        &:before {
+            position: absolute;
+            top: 2px;
+            left: -11px;
+            content: '';
+            width: 1px;
+            height: 19px;
+            background-color: #397a93;
+        }
+    }
+}
+
+.auth__title {
+    margin-bottom: 30px;
+    text-align: center;
+}
