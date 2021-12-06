@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setFullNews, setProfileData, setProfileNews } from "../actions/actions";
+import { setFullNews, setProfileData } from "../actions/actions";
 
 export const fetchUserData = () => {
     return function(dispatch) {

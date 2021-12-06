@@ -1,9 +1,9 @@
-const User = require('./models/User');
-const Role = require('./models/Role');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { validationResult } = require('express-validator');
-const { secret } = require('./config');
+import User from './models/User.js';
+import Role from './models/Role.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { validationResult } from 'express-validator';
+import { secret } from './config.js';
 
 const generateAccessToken = (id, roles) => {
     const payload = {
@@ -29,7 +29,7 @@ class authController {
             const userRole = await Role.findOne({value: "USER"});
             const user = new User({username, password: hashPassword, roles: [userRole.value]});
             await user.save();
-            return res.json({message: 'Пользователь был успешно зарегестрирован'});
+            return res.json(user);
         } catch (e) {
             console.log(e);
             res.status(400).json({message: 'Registration error'})
@@ -65,4 +65,4 @@ class authController {
     }
 }
 
-module.exports = new authController();
+export default new authController();

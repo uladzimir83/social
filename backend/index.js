@@ -1,7 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const authRouter = require('./authRouter');
-const cors = require('cors');
+import express, { application } from 'express';
+import mongoose from 'mongoose';
+import router from './Router.js';
+import cors from 'cors';
+import fileUpload from 'express-fileupload';
 
 const app = express();
 
