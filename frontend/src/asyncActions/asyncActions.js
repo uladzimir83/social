@@ -17,6 +17,15 @@ export const fetchNews = () => {
 }
 
 export const addNews = (newsData) => {
-    console.log(newsData);
     axios.post('http://localhost:3001/news', newsData);
+}
+
+export const login = (userData) => {
+    axios.post('http://localhost:3001/auth/login', userData);
+}
+
+export const registration = (userData) => {
+    axios.post('http://localhost:3001/auth/registration', userData).then(response => {
+        console.log(response);
+    });
 }
