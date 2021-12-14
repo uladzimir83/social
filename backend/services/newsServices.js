@@ -1,9 +1,16 @@
 import News from "../models/News.js";
-import fileService from "./fileServices.js";
+import * as uuid from 'uuid';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 class newsServices {
     async addNews(news, picture) {
-        const fileName = fileService.saveFile(picture);
+        const img = picture;
+        let fileName = uuid.v4() + ".jpg"
+        img.mv(path.resolve(__dirname, '..', 'static', fileName));
         const createNews = await News.create({...news, picture: fileName});
         return createNews;
     }

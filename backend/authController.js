@@ -3,14 +3,14 @@ import Role from './models/Role.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
-import { secret } from './config.js';
 
-const generateAccessToken = (id, roles) => {
-    const payload = {
-        id,
-        roles
-    }
-    return jwt.sign(payload, secret, {expiresIn: '24h'})
+
+const generateAccessToken = (id, login, roles) => {
+    return jwt.sign(
+        {id, login, roles},
+        process.env.REACT_APP_SECRET_KEY,
+        {expiresIn: '24h'}
+    )
 }
 
 class authController {
@@ -29,7 +29,8 @@ class authController {
             const userRole = await Role.findOne({value: "USER"});
             const user = new User({username, password: hashPassword, roles: [userRole.value]});
             await user.save();
-            return res.json(user);
+            const token = generateAccessToken(user.id, user.username)
+            return res.json({token})
         } catch (e) {
             console.log(e);
             res.status(400).json({message: 'Registration error'})
@@ -47,7 +48,7 @@ class authController {
             if (!validPassword) {
                 return res.status(400).json({message: 'Введен неверный пароль'})
             }
-            const token = generateAccessToken(user._id, user.roles);
+            const token = generateAccessToken(user._id, user.username);
             return res.json({token});
         } catch (e) {
             console.log(e);
@@ -55,13 +56,9 @@ class authController {
         }
     }
 
-    async getUsers (req, res) {
-        try {
-            const users = await User.find();
-            res.json(users);
-        } catch (e) {
-            
-        }
+    async check(req, res, next) {
+        const token = generateJwt(req.user.id, req.user.email, req.user.role)
+        return res.json({token})
     }
 }
 

@@ -1,8 +1,16 @@
-import express, { application } from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import router from './Router.js';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -18,8 +26,9 @@ app.use(
 
 app.use(express.json());
 app.use(fileUpload({}));
-app.use('/auth', router);
-app.use('/news', router);
+app.use(express.static(path.resolve(__dirname, 'static')));
+app.use('/api/user', router);
+app.use('', router);
 
 const start = async () => {
     try {

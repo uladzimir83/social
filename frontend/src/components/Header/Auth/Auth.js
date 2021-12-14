@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import { login, registration } from '../../../asyncActions/asyncActions';
 
 const Login = (props) => {
 
     const location = useLocation();
     const isLogin = location.pathname === '/login';
-
+    const history = useHistory();
     const [loginUser, setLoginUser] = useState('');
     const [passwordUser, setPasswordUser] = useState('');
 
-    const submitData = () => {
-        if (isLogin) {
-            login({username: loginUser, password: passwordUser});
-        } else {
-        registration({username: loginUser, password: passwordUser});
+    const submitData = async () => {
+        try {
+            let data;
+            if (isLogin) {
+                data = await login({username: loginUser, password: passwordUser});
+            } else {
+                data = await registration({username: loginUser, password: passwordUser});
+            }
+            history.push('/');
+        } catch (e) {
+            alert(e.response.data.message);
         }
     }
 

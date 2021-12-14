@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { secret } from '../config.js';
 
 export default function(req, res, next) {
     if (req.method === 'OPTIONS') {
@@ -7,13 +6,13 @@ export default function(req, res, next) {
     }
 
     try {
-        const token = req.headers.autharisation.split(' ')[1];
+        const token = req.headers.authorisation.split(' ')[1];
 
         if (!token) {
             res.status(403).json({message: "Пользователь не авторизован"})
         }
 
-        const decodeData = jwt.verify(token, secret)
+        const decodeData = jwt.verify(token, process.env.REACT_API_SECRET_KEY)
         req.user = decodeData;
         next()
     } catch (e) {
