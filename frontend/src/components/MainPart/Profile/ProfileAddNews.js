@@ -10,7 +10,6 @@ function ProfileAddNews(props) {
     let [newsData, setNewsData] = useState({title: '', topic: '', text: ''});
     let userInfo = useSelector(state => state.userInfo);
 
-
     let classes = cn({
         'news__data': true,
         'is-active': newsFormVisible,
