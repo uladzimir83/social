@@ -18,27 +18,29 @@ const authInterceptor = config => {
 $authHost.interceptors.request.use(authInterceptor);
 
 export const login = async (userData) => {
-    const {data} = await $host.post('api/user/login', userData);
+    const {data} = await $host.post('api/auth/login', userData);
         localStorage.setItem('token', data.token);
         return jwt_decode(data.token);
 }
 
 export const registration = async (userData) => {
-    const {data} = await $host.post('api/user/registration', userData);
+    const {data} = await $host.post('api/auth/registration', userData);
         localStorage.setItem('token', data.token);
         return jwt_decode(data.token);
 }
 
 export const check = async () => {
-    const {data} = await $authHost.get('api/user/auth' )
+    const {data} = await $authHost.get('api/auth/auth')
     localStorage.setItem('token', data.token)
     return jwt_decode(data.token)
 }
 
 export const fetchUserData = () => {
     return function(dispatch) {
-        axios.get('http://localhost:3001/userdata')
-            .then(response => {dispatch(setProfileData(response.data))});
+        axios.get('/userdata')
+            .then(response => {
+                dispatch(setProfileData(response.data))
+            });
     }
 }
 
@@ -46,7 +48,6 @@ export const fetchNews = () => {
     return function(dispatch) {
         axios.get('http://localhost:3001/news')
             .then(response => {
-                console.log(response);
                 dispatch(setFullNews(response.data))})
     }
 }
