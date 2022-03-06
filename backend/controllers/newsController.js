@@ -1,5 +1,5 @@
-import News from './models/News.js';
-import newsServices from './services/newsServices.js';
+import News from '../models/News.js';
+import newsServices from '../services/newsServices.js';
 
 class newsController {
     async addNews (req, res) {

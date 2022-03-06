@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import controller from './authController.js';
-import newsController from './newsController.js';
+import controller from './controllers/authController.js';
+import newsController from './controllers/newsController.js';
 import authMiddleware from "./middleware/authMiddleware.js";
 
 const router = new Router();
@@ -12,11 +12,5 @@ router.post('/registration', [
 ], controller.registration);
 router.post('/login', controller.login);
 router.get('/auth', authMiddleware, controller.check);
-
-router.post('/news', newsController.addNews);
-router.get('/news', newsController.getAllNews);
-router.get('/news/:id', newsController.getOneNews);
-router.put('/news', newsController.updateNews);
-router.delete('/news/:id', newsController.deleteNews);
 
 export default router;

@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import router from './Router.js';
+import router from './routers/index.js';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import * as path from 'path';
@@ -16,6 +16,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3001
 
+
 //use cors to allow cross origin resource sharing
 app.use(
     cors({
@@ -27,8 +28,7 @@ app.use(
 app.use(express.json());
 app.use(fileUpload({}));
 app.use(express.static(path.resolve(__dirname, 'static')));
-app.use('/api/user', router);
-app.use('', router);
+app.use('/api', router);
 
 const start = async () => {
     try {
@@ -121,7 +121,6 @@ const allNews = [
     }
 ]
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/news', (req, res) => {
