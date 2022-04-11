@@ -8,6 +8,7 @@ import News from '../News/News';
 import Home from '../Home/Home';
 import Friends from '../Friends/Friends';
 import Auth from '../../Header/Auth/Auth';
+import EditInfo from '../Profile/EditInfo';
 
 function Content(props) {
     return (
@@ -22,6 +23,7 @@ function Content(props) {
                 <Route path='/News' component={News} ><News store={props.store} /></Route>
                 <Route path='/login' component={Auth} />
                 <Route path='/registration' component={Auth} />
+                <Route path='/editInfo' component={EditInfo} />
             </Switch>
         </div>
     )

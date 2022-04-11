@@ -1,15 +1,8 @@
-import User from '../models/User.js';
-import Role from '../models/Role.js';
+import db from '../db.js';
+import {User} from '../models/models.js';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-
-const generateAccessToken = (id, login, roles) => {
-    return jwt.sign(
-        {id, login, roles},
-        process.env.SECRET_KEY,
-        {expiresIn: '24h'}
-    )
-}
+import tokenServices from '../services/tokenServices.js';
+import UserDto from '../dtos/user-dto.js';
 
 class authController {
     async registration (req, res) {
@@ -18,16 +11,19 @@ class authController {
             if(!username || !password) {
                 return res.status(400).json({message: 'Имя или пароль не введены'});
             }
-            const condidate = await User.findOne({username});
+            const condidate = await User.findOne({where: {username}});
             if (condidate) {
                 return res.status(400).json({message: 'Пользователь с таким именем уже существует'})
             }
             const hashPassword = bcrypt.hashSync(password, 7);
-            const userRole = await Role.findOne({value: "USER"});
-            const user = new User({username, password: hashPassword, roles: [userRole.value]});
-            await user.save();
-            const token = generateAccessToken(user.id, user.username, user.roles)
-            return res.json({token})
+            const user = await User.create({username, password: hashPassword});
+            const userDto = new UserDto(user);
+            const tokens = tokenServices.generateTokens({...userDto});
+            await tokenServices.saveToken(userDto.id, tokens.refreshToken);
+            return res.json({
+                ...tokens,
+                user: userDto
+            });
         } catch (e) {
             console.log(e);
             res.status(400).json({message: 'Registration error'})
@@ -37,7 +33,7 @@ class authController {
     async login (req, res) {
         try {
             const {username, password} = req.body;
-            const user = await User.findOne({username});
+            const user = await User.findOne({where: {username}});
             if (!user) {
                 return res.status(400).json({message: `Пользователь ${username} не найден`})
             }

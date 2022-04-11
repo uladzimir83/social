@@ -34,32 +34,38 @@ function ProfileAddNews(props) {
             </div>
             <form className={classes} onSubmit={(e) => {e.preventDefault()}}>
                 <div className="news__data__header">
-                    <input 
-                        type="text" 
-                        value={newsData.title} 
-                        onChange={(e) => {setNewsData({...newsData, title: e.target.value})}} 
-                        className="news__data__field news__data__title" 
-                        placeholder="Title" 
-                    />
-                    <input 
-                        type="text"
-                        value={newsData.topic} 
-                        onChange={(e) => {setNewsData({...newsData, topic: e.target.value})}} 
-                        className="news__data__field news__data__topic" 
-                        placeholder="Topic" 
-                    />
+                    <div className='data__field__wrapper'>
+                        <input 
+                            type="text" 
+                            value={newsData.title} 
+                            onChange={(e) => {setNewsData({...newsData, title: e.target.value})}} 
+                            className="data__field news__data__title" 
+                            placeholder="Title" 
+                        />
+                    </div>
+                    <div className='data__field__wrapper'>
+                        <input 
+                            type="text"
+                            value={newsData.topic} 
+                            onChange={(e) => {setNewsData({...newsData, topic: e.target.value})}} 
+                            className="data__field news__data__topic" 
+                            placeholder="Topic" 
+                        />
+                    </div>
                 </div>
                 <div className="news__data__body">
-                    <textarea 
-                        className="news__data__field news__data__text" 
-                        value={newsData.text} 
-                        onChange={(e) => {setNewsData({...newsData, text: e.target.value})}} 
-                        name="newsText" 
-                        id="newsText" 
-                        cols="30" 
-                        rows="5" 
-                        placeholder="Your news here">
-                    </textarea>
+                    <div className='data__field__wrapper'>
+                        <textarea 
+                            className="data__field news__data__text" 
+                            value={newsData.text} 
+                            onChange={(e) => {setNewsData({...newsData, text: e.target.value})}} 
+                            name="newsText" 
+                            id="newsText" 
+                            cols="30" 
+                            rows="5" 
+                            placeholder="Your news here">
+                        </textarea>
+                    </div>
                     <input
                         onClick={createNews} 
                         className="btn" 

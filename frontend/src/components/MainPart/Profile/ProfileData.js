@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import ProfileStatus from './ProfileStatus';
 
@@ -21,6 +22,9 @@ function ProfileData(props) {
                 <ProfileStatus />
             </div>
             <div className={togglerClass}>
+                <div className="edit-info__wrapper">
+                    <NavLink to="EditInfo">Edit info</NavLink>
+                </div>
                 <div className="profile__data__item">
                     <span className="profile__data__label">Location:</span> <span>{props.userData.location}</span>
                 </div>

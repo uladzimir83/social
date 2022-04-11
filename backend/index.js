@@ -1,14 +1,15 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
-import mongoose from 'mongoose';
 import router from './routers/index.js';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import dotenv from 'dotenv';
-dotenv.config();
-
+import cookieParser from 'cookie-parser';
+import sequelize from './db.js';
+import {User, UserData, TokenModel} from './models/models.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -26,13 +27,15 @@ app.use(
 );
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(fileUpload({}));
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use('/api', router);
 
 const start = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://Uladzimir:HeDiN3093@cluster0.fd4cy.mongodb.net/social?retryWrites=true&w=majority`)
+        await sequelize.authenticate()
+        await sequelize.sync()
         app.listen(PORT, () => {
             console.log('server started on localhost:' + `${PORT}`);
         })

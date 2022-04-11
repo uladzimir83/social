@@ -1,11 +1,19 @@
-import User from '../models/User.js';
-import newsServices from '../services/newsServices.js';
+import db from './../db.js';
+
+
 
 class userController {
     async addInfo (req, res) {
         try {
-            const data = await User.create(req.body);
-            res.json(data);
+            const user = await new UserData(req.body);
+            console.log('user', user)
+            user.save((err, user) => {
+                if (err) {
+                  console.log('err', err)
+                }
+                console.log('saved user', user)
+              });
+            res.json(user);
         } catch (e) {
             console.log(e);
             res.status(400).json({message: 'add data error'})

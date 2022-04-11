@@ -4,11 +4,7 @@ import { setFullNews, setProfileData } from "../actions/actions";
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL
-})
-
-const $authHost = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
-})
+});
 
 const authInterceptor = config => {
     config.headers.authorization = `Bearer ${localStorage.getItem('token')}`
@@ -25,12 +21,12 @@ export const login = async (userData) => {
 
 export const registration = async (userData) => {
     const {data} = await $host.post('api/auth/registration', userData);
-        localStorage.setItem('token', data.token);
-        return jwt_decode(data.token);
+        localStorage.setItem('token', data.refreshToken);
+        return jwt_decode(data.refreshToken);
 }
 
 export const check = async () => {
-    const {data} = await $authHost.get('api/auth/auth')
+    const {data} = await $host.get('api/auth/auth')
     localStorage.setItem('token', data.token)
     return jwt_decode(data.token)
 }
@@ -54,4 +50,9 @@ export const fetchNews = () => {
 
 export const addNews = (newsData) => {
     axios.post('http://localhost:3001/news', newsData);
+}
+
+export const addInfo = (info) => {
+    console.log(info);
+    axios.post('http://localhost:3001/api/user/user', info);
 }

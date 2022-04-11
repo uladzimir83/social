@@ -18,6 +18,7 @@ const Login = (props) => {
             } else {
                 data = await registration({username: loginUser, password: passwordUser});
             }
+
             history.push('/');
         } catch (e) {
             alert(e.response.data.message);
