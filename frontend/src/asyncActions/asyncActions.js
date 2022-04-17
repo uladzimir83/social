@@ -3,7 +3,8 @@ import jwt_decode from "jwt-decode";
 import { setFullNews, setProfileData } from "../actions/actions";
 
 const $host = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
+    baseURL: process.env.REACT_APP_API_URL,
+    withCredentials: true,
 });
 
 const authInterceptor = config => {
@@ -11,7 +12,7 @@ const authInterceptor = config => {
     return config
 }
 
-$authHost.interceptors.request.use(authInterceptor);
+$host.interceptors.request.use(authInterceptor);
 
 export const login = async (userData) => {
     const {data} = await $host.post('api/auth/login', userData);
@@ -26,9 +27,9 @@ export const registration = async (userData) => {
 }
 
 export const check = async () => {
-    const {data} = await $host.get('api/auth/auth')
-    localStorage.setItem('token', data.token)
-    return jwt_decode(data.token)
+    const {data} = await $host.get('api/auth/auth');
+    localStorage.setItem('token', data.token);
+    
 }
 
 export const fetchUserData = () => {
