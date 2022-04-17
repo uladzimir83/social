@@ -12,6 +12,7 @@ import sequelize from './db.js';
 import {User, UserData, TokenModel} from './models/models.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+import errorMiddleware from './middleware/error-middleware.js';
 
 const app = express();
 
@@ -148,6 +149,8 @@ app.post('/news', function(req, res) {
 
   allNews.push(news);
 });
+
+app.use(errorMiddleware);
 
 start();
 

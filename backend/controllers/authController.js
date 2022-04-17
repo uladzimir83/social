@@ -1,32 +1,25 @@
 import db from '../db.js';
 import {User} from '../models/models.js';
 import bcrypt from 'bcryptjs';
+import userServices from '../services/userServices.js';
 import tokenServices from '../services/tokenServices.js';
 import UserDto from '../dtos/user-dto.js';
+import ApiError from '../exceptions/api-errors.js';
 
 class authController {
-    async registration (req, res) {
+    async registration (req, res, next) {
         try {
             const {username, password} = req.body;
             if(!username || !password) {
-                return res.status(400).json({message: 'Имя или пароль не введены'});
+                return next(ApiError.BadRequest('Введенные данные некорректны'));
             }
-            const condidate = await User.findOne({where: {username}});
-            if (condidate) {
-                return res.status(400).json({message: 'Пользователь с таким именем уже существует'})
-            }
-            const hashPassword = bcrypt.hashSync(password, 7);
-            const user = await User.create({username, password: hashPassword});
-            const userDto = new UserDto(user);
-            const tokens = tokenServices.generateTokens({...userDto});
-            await tokenServices.saveToken(userDto.id, tokens.refreshToken);
-            return res.json({
-                ...tokens,
-                user: userDto
-            });
+            
+            const userData = await userServices.registration(username, password);
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
+            return res.json({userData});
         } catch (e) {
             console.log(e);
-            res.status(400).json({message: 'Registration error'})
+            next(e);
         }
     }
 
