@@ -7,6 +7,14 @@
     padding: 30px;
 }
 
+.auth__wrapper__is__checked {
+    max-width: 600px;
+    margin: 50px auto 0;
+    border-radius: 10px;
+    background-color: aliceblue;
+    box-shadow: 0 1px 7px 0 rgba(135, 206, 235, .7);
+}
+
 .auth__link {
     position: relative;
     &:last-child {
@@ -31,7 +39,6 @@
 .auth__form {
     max-width: 350px;
     margin: 0 auto;
-
 }
 
 .auth__form__row {

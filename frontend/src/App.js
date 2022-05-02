@@ -22,7 +22,7 @@ function App(props) {
 
 
 if (userInfo.auth.isAuth === false) {
-  return <Auth />
+  return <Auth isCheck={true} />
 }
 
   return (

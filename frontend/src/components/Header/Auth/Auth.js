@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { login, registration } from '../../../asyncActions/asyncActions';
 import { authUser, setAuthData } from '../../../actions/actions.js';
+import cn from 'classnames';
 
 const Login = (props) => {
 
@@ -12,6 +13,7 @@ const Login = (props) => {
     const navigate = useNavigate();
     const [emailUser, setEmailUser] = useState('');
     const [passwordUser, setPasswordUser] = useState('');
+
 
     const submitData = async () => {
         try {
@@ -29,8 +31,13 @@ const Login = (props) => {
         }
     }
 
+    let authWrapper = cn({
+        'auth__wrapper': true,
+        'auth__wrapper__is__checked': props.isCheck,
+    })
+
     return (
-        <div className="auth__wrapper">
+        <div className={authWrapper}>
             <h2 className="auth__title">{isLogin ? 'Log In' : 'Sign Up'}</h2>
             <form className="auth__form" onSubmit={(e) => {e.preventDefault()}}>
                 <div className="auth__form__row">
