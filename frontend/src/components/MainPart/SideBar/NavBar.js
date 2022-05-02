@@ -7,25 +7,25 @@ function NavBar(props) {
     return (
         <nav className="pages__nav">
             <div className="pages__nav__item">
-                <NavLink className="pages__nav__link" activeClassName="active" exact to="/">Home</NavLink>
+                <NavLink className="pages__nav__link" activeclassname="active" end to="/">Home</NavLink>
             </div>
             <div className="pages__nav__item">
-                <NavLink className="pages__nav__link" activeClassName="active" to="Profile">Profile</NavLink>
+                <NavLink className="pages__nav__link" activeclassname="active" to="Profile">Profile</NavLink>
             </div>
             <div className="pages__nav__item">
-                <NavLink className="pages__nav__link" activeClassName="active" to="Dialogs">Dialogs</NavLink>
+                <NavLink className="pages__nav__link" activeclassname="active" to="Dialogs">Dialogs</NavLink>
             </div>
             <div className="pages__nav__item">
-                <NavLink className="pages__nav__link" activeClassName="active" to="Friends">Friends</NavLink>
+                <NavLink className="pages__nav__link" activeclassname="active" to="Friends">Friends</NavLink>
             </div>
             <div className="pages__nav__item">
-                <NavLink className="pages__nav__link" activeClassName="active" to="News">News</NavLink>
+                <NavLink className="pages__nav__link" activeclassname="active" to="News">News</NavLink>
             </div>
             <div className="pages__nav__item">
-                <NavLink className="pages__nav__link" activeClassName="active" to="Images">Images</NavLink>
+                <NavLink className="pages__nav__link" activeclassname="active" to="Images">Images</NavLink>
             </div>
             <div className="pages__nav__item">
-                <NavLink className="pages__nav__link" activeClassName="active" to="Videos">Videos</NavLink>
+                <NavLink className="pages__nav__link" activeclassname="active" to="Videos">Videos</NavLink>
             </div>
         </nav>
     )

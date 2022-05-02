@@ -9,42 +9,35 @@ import ApiError from '../exceptions/api-errors.js';
 class authController {
     async registration (req, res, next) {
         try {
-            const {username, password} = req.body;
-            if(!username || !password) {
+            const {email, password} = req.body;
+            if(!email || !password) {
                 return next(ApiError.BadRequest('Введенные данные некорректны'));
             }
             
-            const userData = await userServices.registration(username, password);
-            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
+            const userData = await userServices.registration(email, password);
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true});
             return res.json({userData});
         } catch (e) {
-            console.log(e);
             next(e);
         }
     }
 
-    async login (req, res) {
+    async login (req, res, next) {
         try {
-            const {username, password} = req.body;
-            const user = await User.findOne({where: {username}});
-            if (!user) {
-                return res.status(400).json({message: `Пользователь ${username} не найден`})
-            }
-            const validPassword = bcrypt.compareSync(password, user.password);
-            if (!validPassword) {
-                return res.status(400).json({message: 'Введен неверный пароль'})
-            }
-            const token = generateAccessToken(user._id, user.username, user.roles);
-            return res.json({token});
+            const {email, password} = req.body;
+            const userData = await userServices.login(email, password);
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true});
+            return res.json({userData});
         } catch (e) {
-            console.log(e);
-            res.status(400).json({message: 'Login error'})
+            next(e);
         }
     }
 
-    async check(req, res, next) {
-        const token = generateAccessToken(req.user.id, req.user.email, req.user.role)
-        return res.json({token})
+    async refresh(req, res, next) {
+        const {refreshToken} = req.cookies;
+        const userData = await userServices.refresh(refreshToken);
+        res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true});
+        return res.json({userData});
     }
 }
 

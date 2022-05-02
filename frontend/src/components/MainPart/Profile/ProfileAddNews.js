@@ -8,7 +8,9 @@ import { getCurrentDate } from '../../../lib/getCurrentDate';
 function ProfileAddNews(props) {
     let [newsFormVisible, setNewsFormVisible] = useState(false);
     let [newsData, setNewsData] = useState({title: '', topic: '', text: ''});
-    let userInfo = useSelector(state => state.userInfo);
+    let userInfo = useSelector(state => state);
+
+    console.log(userInfo);
 
     let classes = cn({
         'news__data': true,

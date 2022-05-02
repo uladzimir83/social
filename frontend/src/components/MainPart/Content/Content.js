@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import Profile from '../Profile/Profile';
 import Dialogs from '../Dialogs/Dialogs';
 import Images from '../Images/Images';
@@ -13,18 +13,18 @@ import EditInfo from '../Profile/EditInfo';
 function Content(props) {
     return (
         <div className="main__content">
-            <Switch>
-                <Route exact path='/' component={Home}></Route>
-                <Route path='/Profile'><Profile store={props.store} /></Route>
-                <Route path='/Dialogs' component={Dialogs} />
-                <Route path='/Friends' component={Friends} />
-                <Route path='/Images' component={Images} />
-                <Route path='/Videos' component={Videos} />
-                <Route path='/News' component={News} ><News store={props.store} /></Route>
-                <Route path='/login' component={Auth} />
-                <Route path='/registration' component={Auth} />
-                <Route path='/editInfo' component={EditInfo} />
-            </Switch>
+            <Routes>
+                <Route end path='/' element={ <Home />}></Route>
+                <Route path='/Profile'></Route>
+                <Route path='/Dialogs' element={ <Dialogs />} />
+                <Route path='/Friends' element={ <Friends />} />
+                <Route path='/Images' element={ <Images />} />
+                <Route path='/Videos' element={ <Videos />} />
+                <Route path='/News' element={ <News />} ></Route>
+                <Route path='/login' element={ <Auth />} />
+                <Route path='/registration' element={ <Auth />} />
+                <Route path='/editInfo' element={ <EditInfo />} />
+            </Routes>
         </div>
     )
 }

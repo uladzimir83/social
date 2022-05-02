@@ -1,22 +1,35 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Header from './components/Header/Header';
 import MainPart from './components/MainPart/MainPart';
-import {BrowserRouter} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './scss/styles.scss';
-import { check } from './asyncActions/asyncActions';
+import { checkAuth } from './asyncActions/asyncActions';
+import { useSelector } from 'react-redux';
+import Auth from './components/Header/Auth/Auth';
 
 function App(props) {
+  let dispatch = useDispatch();
+  let userInfo = useSelector(state => state);
+
   useEffect(() => {
-    check();
-}, [])
+    if (localStorage.getItem('token')) {
+      dispatch(checkAuth());
+    }
+    
+}, []);
+
+
+
+if (userInfo.auth.isAuth === false) {
+  return <Auth />
+}
 
   return (
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-          <MainPart store={props.store} />
-        </div>
-      </BrowserRouter>
+      <div className="App">
+        <Header />
+        <MainPart store={props.store} />
+      </div>
   );
 }
 

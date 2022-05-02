@@ -3,7 +3,8 @@ export const ADD_PROFILE_DATA = 'ADD_PROFILE_DATA',
              ADD_PROFILE_NEWS = 'ADD_PROFILE_NEWS',
              ADD_FULL_NEWS = 'ADD_FULL_NEWS',
              CLEAN_NEWS_ARRAY = 'CLEAN_NEWS_ARRAY',
-             USER_IS_AUTH = 'USER_IS_AUTH';
+             USER_IS_AUTH = 'USER_IS_AUTH',
+             SET_AUTH_DATA = 'SET_AUTH_DATA'
 
 
 export const setProfileData = (data) => ({
@@ -30,6 +31,12 @@ export const cleanNews = () => ({
     type: CLEAN_NEWS_ARRAY
 });
 
-export const authUser = (authUser) => {
-    console.log(authUser)
-}
+export const authUser = (authData) => ({
+    type: USER_IS_AUTH,
+    authData
+});
+
+export const setAuthData = (authData) => ({
+    type: SET_AUTH_DATA,
+    authData,
+})

@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { setFullNews, setProfileData } from "../actions/actions";
+import { setFullNews, setProfileData, authUser, setAuthData } from "../actions/actions";
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -16,20 +16,27 @@ $host.interceptors.request.use(authInterceptor);
 
 export const login = async (userData) => {
     const {data} = await $host.post('api/auth/login', userData);
-        localStorage.setItem('token', data.token);
-        return jwt_decode(data.token);
+        localStorage.setItem('token', data.userData.refreshToken);
+        return jwt_decode(data.userData.refreshToken);
 }
 
 export const registration = async (userData) => {
     const {data} = await $host.post('api/auth/registration', userData);
-        localStorage.setItem('token', data.refreshToken);
-        return jwt_decode(data.refreshToken);
+        localStorage.setItem('token', data.userData.refreshToken);
+        return jwt_decode(data.userData.refreshToken);
 }
 
-export const check = async () => {
-    const {data} = await $host.get('api/auth/auth');
-    localStorage.setItem('token', data.token);
-    
+export const checkAuth = () => {
+    return async function(dispatch) {
+        try {
+            const response = await axios.get('api/auth/refresh', {withCredentials: true});
+            dispatch(authUser(true));
+            dispatch(setAuthData(response.data.userData.user));
+            localStorage.setItem('token', response.data.accessToken);
+        } catch (e) {
+            console.log(e.response?.data);
+        }
+    }
 }
 
 export const fetchUserData = () => {
