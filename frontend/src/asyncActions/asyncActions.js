@@ -15,15 +15,24 @@ const authInterceptor = config => {
 $host.interceptors.request.use(authInterceptor);
 
 export const login = async (userData) => {
-    const {data} = await $host.post('api/auth/login', userData);
-        localStorage.setItem('token', data.userData.refreshToken);
-        return jwt_decode(data.userData.refreshToken);
+    try {
+        const response = await $host.post('api/auth/login', userData);
+        localStorage.setItem('token', response.data.userData.refreshToken);
+        return jwt_decode(response.data.userData.refreshToken);
+    } catch(e) {
+        
+    }
 }
 
 export const registration = async (userData) => {
-    const {data} = await $host.post('api/auth/registration', userData);
-        localStorage.setItem('token', data.userData.refreshToken);
-        return jwt_decode(data.userData.refreshToken);
+    try {
+        const response = await $host.post('api/auth/registration', userData);
+        localStorage.setItem('token', response.data.userData.refreshToken);
+        return jwt_decode(response.data.userData.refreshToken);
+    } catch(e) {
+        console.log(e.response?.data);
+    }
+    
 }
 
 export const checkAuth = () => {
@@ -32,7 +41,20 @@ export const checkAuth = () => {
             const response = await axios.get('api/auth/refresh', {withCredentials: true});
             dispatch(authUser(true));
             dispatch(setAuthData(response.data.userData.user));
-            localStorage.setItem('token', response.data.accessToken);
+            localStorage.setItem('token', response.data.userData.accessToken);
+        } catch (e) {
+            console.log(e.response?.data);
+        }
+    }
+}
+
+export const logout = () => {
+    return async function(dispatch) {
+        try {
+            const response = await axios.get('api/auth/logout', {withCredentials: true});
+            localStorage.removeItem('token');
+            dispatch(authUser(false));
+            dispatch(setAuthData({}));
         } catch (e) {
             console.log(e.response?.data);
         }

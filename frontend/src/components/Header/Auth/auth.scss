@@ -1,8 +1,4 @@
 
-.auth__profile {
-    display: none;
-}
-
 .auth__wrapper {
     padding: 30px;
 }
@@ -28,6 +24,12 @@
             height: 19px;
             background-color: #397a93;
         }
+    }
+}
+
+.auth__link__logout {
+    &:before {
+        display: none;
     }
 }
 

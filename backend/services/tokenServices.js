@@ -46,6 +46,11 @@ class TokenServices {
         const tokenData = await TokenModel.findOne({where: {refreshToken}});
         return tokenData.refreshToken;
     }
+
+    async removeToken(refreshToken) {
+        const tokenData = await TokenModel.destroy({where: {refreshToken}});
+        return tokenData;
+    }
 }
 
 export default new TokenServices();

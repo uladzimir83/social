@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from './components/Header/Header';
 import MainPart from './components/MainPart/MainPart';
-import {useNavigate} from 'react-router-dom';
 import './scss/styles.scss';
 import { checkAuth } from './asyncActions/asyncActions';
 import { useSelector } from 'react-redux';

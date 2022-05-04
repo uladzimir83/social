@@ -39,6 +39,19 @@ class authController {
         res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true});
         return res.json({userData});
     }
+
+    async logout(req, res, next) {
+        try {
+            console.log('dfdfffffffffffffffffff');
+            const {refreshToken} = req.cookies;
+            const token = await userServices.logout(refreshToken);
+            res.clearCookie('refreshToken');
+            return res.json(token);
+        } catch (e) {
+            console.log(e);
+            next(e);
+        }
+    }
 }
 
 export default new authController();
