@@ -1,20 +1,24 @@
-import jwt from 'jsonwebtoken';
+import { check } from 'express-validator';
+import {User} from '../models/models.js';
 
-export default function(req, res, next) {
-    if (req.method === 'OPTIONS') {
-        next()
-    }
-    try {
-        const token = req.headers.authorization.split(' ')[1];
+const validResult = [
+        check('email', "Поле email заполнено с ошибкой").isEmail(),
+        check('email').custom(async (value) => {
+            return await User.findOne({where: {email: value}}).then(userMail => {
+                if (userMail) {
+                return Promise.reject('E-mail already in use');
+                }
+            });
+            }),
+        check('login', "Имя пользователя не может быть пустым").notEmpty(),
+        check('login').custom(async (value) => {
+            return await User.findOne({where: {login: value}}).then(userMail => {
+                if (userMail) {
+                return Promise.reject('This login already in use');
+                }
+            });
+            }),
+        check('password', "Пароль должен быть больше 4 и меньше 10 символов").isLength({min:4, max:10}),
+        ]
 
-        if (!token) {
-            return res.status(401).json({message: "Пользователь не авторизован1"})
-        }
-
-        const decodeData = jwt.verify(token, process.env.SECRET_KEY)
-        req.user = decodeData;
-        next()
-    } catch (e) {
-        res.status(401).json({message: "Пользователь не авторизован12"})
-    }
-}
+export default validResult;

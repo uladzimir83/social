@@ -6,14 +6,19 @@ import UserDto from '../dtos/user-dto.js';
 import ApiError from '../exceptions/api-errors.js';
 
 class UserServices {
-    async registration(email, password) {
-        const candidate = await User.findOne({where: {email}});
-        if (candidate) {
-            throw ApiError.BadRequest(`Пользователь с такими данными ${email} уже существует`);
+    async registration(email, login, password) {
+        const checkMail = await User.findOne({where: {email}});
+        if (checkMail) {
+            throw ApiError.BadRequest(`Пользователь с данными '${email}' уже существует`);
+        }
+
+        const checkLogin = await User.findOne({where: {login}});
+        if (checkLogin) {
+            throw ApiError.BadRequest(`Пользователь с данными '${login}' уже существует`);
         }
 
         const hashPassword = bcrypt.hashSync(password, 3);
-        const user = await User.create({email, password: hashPassword});
+        const user = await User.create({email, login, password: hashPassword});
 
         const userDto = new UserDto(user);
         const tokens = tokenServices.generateTokens({...userDto});

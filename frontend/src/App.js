@@ -19,15 +19,12 @@ function App(props) {
 }, []);
 
 
-
-if (userInfo.auth.isAuth === false) {
-  return <Auth isCheck={true} />
-}
+const mainPart = userInfo.auth.isAuth ? <MainPart store={props.store} /> : <Auth isCheck={true} />;
 
   return (
       <div className="App">
         <Header />
-        <MainPart store={props.store} />
+        {mainPart}
       </div>
   );
 }

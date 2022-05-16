@@ -9,15 +9,13 @@ import ApiError from '../exceptions/api-errors.js';
 class authController {
     async registration (req, res, next) {
         try {
-            const {email, password} = req.body;
-            if(!email || !password) {
-                return next(ApiError.BadRequest('Введенные данные некорректны'));
-            }
-            
-            const userData = await userServices.registration(email, password);
+            const {email, login, password} = req.body;
+           
+            const userData = await userServices.registration(email, login, password);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true});
             return res.json({userData});
         } catch (e) {
+            console.log(e);
             next(e);
         }
     }
@@ -42,7 +40,6 @@ class authController {
 
     async logout(req, res, next) {
         try {
-            console.log('dfdfffffffffffffffffff');
             const {refreshToken} = req.cookies;
             const token = await userServices.logout(refreshToken);
             res.clearCookie('refreshToken');

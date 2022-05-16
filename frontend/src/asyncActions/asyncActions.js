@@ -15,24 +15,15 @@ const authInterceptor = config => {
 $host.interceptors.request.use(authInterceptor);
 
 export const login = async (userData) => {
-    try {
-        const response = await $host.post('api/auth/login', userData);
-        localStorage.setItem('token', response.data.userData.refreshToken);
-        return jwt_decode(response.data.userData.refreshToken);
-    } catch(e) {
-        
-    }
+    const response = await $host.post('api/auth/login', userData);
+    localStorage.setItem('token', response.data.userData.refreshToken);
+    return jwt_decode(response.data.userData.refreshToken);
 }
 
 export const registration = async (userData) => {
-    try {
-        const response = await $host.post('api/auth/registration', userData);
-        localStorage.setItem('token', response.data.userData.refreshToken);
-        return jwt_decode(response.data.userData.refreshToken);
-    } catch(e) {
-        console.log(e.response?.data);
-    }
-    
+    const response = await $host.post('api/auth/registration', userData);
+    localStorage.setItem('token', response.data.userData.refreshToken);
+    return jwt_decode(response.data.userData.refreshToken);
 }
 
 export const checkAuth = () => {
