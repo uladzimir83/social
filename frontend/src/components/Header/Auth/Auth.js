@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { login, registration } from '../../../asyncActions/asyncActions';
 import { authUser, setAuthData } from '../../../actions/actions.js';
+import AuthError from './AuthError';
 import './auth.scss';
 import cn from 'classnames';
 
@@ -15,7 +16,9 @@ const Login = (props) => {
     const [emailUser, setEmailUser] = useState('');
     const [passwordUser, setPasswordUser] = useState('');
     const [loginUser, setLoginUser] = useState('');
-
+    const [showError, setShowError] = useState(false);
+    const [errorData, setErrorData] = useState('');
+    
     const submitData = async () => {
         try {
             let data;
@@ -28,26 +31,14 @@ const Login = (props) => {
             dispatch(setAuthData(data));
             navigate('/');
         } catch (e) {
-            if (!document.querySelector('.showErrors')) {
-                let div = document.createElement('div');
-                div.innerHTML = e.response.data.errors[0].msg;
-                div.classList.add('showErrors');
-                document.body.append(div);
-                setTimeout(() => {
-                    div.classList.add('errorsTransition');
-                }, 100);
-                div.addEventListener('click', e => {
-                    e.target.remove();
-                });
+            if (!showError) {
+                setShowError(!showError);
+                setErrorData(e.response.data.errors[0].msg);
             }
         }
     }
-
-    const clearErrorMessage = () => {
-        let err = document.querySelector('.showErrors');
-        if (err) {
-            err.remove();
-        }
+    const removeErrorMessage = () => {
+        setShowError(false);
     }
 
     let authWrapper = cn({
@@ -65,7 +56,7 @@ const Login = (props) => {
                         className="auth__form__input" 
                         id="email" 
                         onChange={(e) => {setEmailUser(e.target.value)}}
-                        onFocus={() => {clearErrorMessage()}}
+                        onFocus={removeErrorMessage}
                         value={emailUser} 
                         type="email" 
                         placeholder="Email" 
@@ -78,7 +69,7 @@ const Login = (props) => {
                         className="auth__form__input" 
                         id="login" 
                         onChange={(e) => {setLoginUser(e.target.value)}}
-                        onFocus={() => {clearErrorMessage()}}
+                        onFocus={removeErrorMessage}
                         value={loginUser} 
                         type="text" 
                         placeholder="Login" 
@@ -91,7 +82,7 @@ const Login = (props) => {
                         className="auth__form__input" 
                         id="pass" 
                         onChange={(e) => {setPasswordUser(e.target.value)}}
-                        onFocus={() => {clearErrorMessage()}}
+                        onFocus={removeErrorMessage}
                         value={passwordUser} 
                         type="password" 
                         placeholder="Password" 
@@ -105,6 +96,7 @@ const Login = (props) => {
                     <button className="auth__form__submit" onClick={submitData} type="submit">{isRegistration ? 'SignUp' : 'Log In'}</button>
                 </div>
             </form>
+            {showError && <AuthError error={errorData} closeError={removeErrorMessage}/>}
         </div>
     )
 }
