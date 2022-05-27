@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import cn from 'classnames';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { login, registration } from '../../../asyncActions/asyncActions';
+import { Transition } from 'react-transition-group';
 import { authUser, setAuthData } from '../../../actions/actions.js';
-import AuthError from './AuthError';
+import { login, registration } from '../../../asyncActions/asyncActions';
 import './auth.scss';
-import cn from 'classnames';
+import AuthError from './AuthError';
 
 const Login = (props) => {
 
@@ -31,9 +32,10 @@ const Login = (props) => {
             dispatch(setAuthData(data));
             navigate('/');
         } catch (e) {
+            console.log(e.response);
             if (!showError) {
                 setShowError(!showError);
-                setErrorData(e.response.data.errors[0].msg);
+                setErrorData(e.response.data.message);
             }
         }
     }
@@ -96,7 +98,19 @@ const Login = (props) => {
                     <button className="auth__form__submit" onClick={submitData} type="submit">{isRegistration ? 'SignUp' : 'Log In'}</button>
                 </div>
             </form>
-            {showError && <AuthError error={errorData} closeError={removeErrorMessage}/>}
+            {showError && (
+                <Transition
+                in={showError}
+                timeout={2000}
+                appear
+                mountOnEnter
+                exit
+            >
+                {state => (
+                    <AuthError error={errorData} state={state} closeError={removeErrorMessage}/>
+                )}
+            </Transition>
+            )}
         </div>
     )
 }

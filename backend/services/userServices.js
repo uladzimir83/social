@@ -7,16 +7,6 @@ import ApiError from '../exceptions/api-errors.js';
 
 class UserServices {
     async registration(email, login, password) {
-        const checkMail = await User.findOne({where: {email}});
-        if (checkMail) {
-            throw ApiError.BadRequest(`Пользователь с данными '${email}' уже существует`);
-        }
-
-        const checkLogin = await User.findOne({where: {login}});
-        if (checkLogin) {
-            throw ApiError.BadRequest(`Пользователь с данными '${login}' уже существует`);
-        }
-
         const hashPassword = bcrypt.hashSync(password, 3);
         const user = await User.create({email, login, password: hashPassword});
 
@@ -31,14 +21,12 @@ class UserServices {
         const userInBase = await User.findOne({where: {email}});
 
         if (!userInBase) {
-            throw ApiError.BadRequest(`Пользователь с таким email ${email} не зарегистрирован`);
+            throw ApiError.BadRequest(`User with this email '${email}' is not registered`);
         }
-
-        const isPassActual = bcrypt.compare(password, userInBase.password);
-        if (!isPassActual) {
-            throw ApiError.BadRequest(`Неверно указан пароль`);
+        const isPassActual = bcrypt.compareSync(password, userInBase.password);
+        if (isPassActual == false) {
+            throw ApiError.BadRequest(`Wrong password`);
         }
-
         const userDto = new UserDto(userInBase);
         const tokens = tokenServices.generateTokens({...userDto});
 

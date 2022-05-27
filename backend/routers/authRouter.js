@@ -1,14 +1,13 @@
 import { Router } from "express";
 import authController from "../controllers/authController.js";
-import validResult from "../middleware/authMiddleware.js"
-import { validateAuthMiddleware } from "../middleware/validateAuthMiddleware.js";
-import { check } from 'express-validator';
-import {User} from '../models/models.js';
+import validate from "../middleware/validate.js";
+import { validateLogin, validateRegistration } from "../middleware/validateTypes.js";
 
 const router = new Router();
 
-router.post('/registration', validResult, validateAuthMiddleware, authController.registration);
-router.post('/login', authController.login);
+router.post('/registration', validate(validateRegistration), authController.registration);
+
+router.post('/login', validate(validateLogin), authController.login);
 router.get('/refresh', authController.refresh);
 router.get('/logout', authController.logout);
 
