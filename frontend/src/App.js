@@ -8,25 +8,42 @@ import { useSelector } from 'react-redux';
 import Auth from './components/Header/Auth/Auth';
 
 function App(props) {
-  let dispatch = useDispatch();
-  let userInfo = useSelector(state => state);
+  	let dispatch = useDispatch();
+	let userInfo = useSelector(state => state);
+	let isLoading = useSelector(state => state.auth.isLoading);
+  	
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      dispatch(checkAuth());
-    }
-    
-}, []);
+  	useEffect(() => {
+    	if (localStorage.getItem('token')) {
+      		dispatch(checkAuth());
+    	}
+	}, []);
 
 
-const mainPart = userInfo.auth.isAuth ? <MainPart store={props.store} /> : <Auth isCheck={true} />;
+	if(isLoading) {
+		return 	(<div className="loading">
+			<div className="dot"></div>
+			<div className="dot"></div>
+			<div className="dot"></div>
+			<div className="dot"></div>
+			<div className="dot"></div>
+		</div>
+		)
+	}
+	
 
-  return (
-      <div className="App">
-        <Header />
-        {mainPart}
-      </div>
-  );
+	if (userInfo.auth.isAuth) {
+		return (
+			<div className="App">
+			<Header />
+			<MainPart store={props.store} />
+			</div>
+		);
+	}
+
+	if (!userInfo.auth.isAuth) {
+		return <Auth isCheck={true} />
+	}
 }
 
 export default App;

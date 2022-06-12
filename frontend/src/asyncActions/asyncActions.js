@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { setFullNews, setProfileData, authUser, setAuthData } from "../actions/actions";
+import { setFullNews, setProfileData, authUser, setAuthData, setIsLoading } from "../actions/actions";
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -32,9 +32,12 @@ export const checkAuth = () => {
             const response = await axios.get('api/auth/refresh', {withCredentials: true});
             dispatch(authUser(true));
             dispatch(setAuthData(response.data.userData.user));
+            dispatch(setIsLoading(false));
             localStorage.setItem('token', response.data.userData.accessToken);
         } catch (e) {
             console.log(e.response?.data);
+        } finally {
+            
         }
     }
 }
