@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { setFullNews, setProfileData, authUser, setAuthData } from "../actions/actions";
+import { setFullNews, setProfileData, authUser, setAuthData, setLoader } from "../actions/actions";
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -29,9 +29,11 @@ export const registration = async (userData) => {
 export const checkAuth = () => {
     return async function(dispatch) {
         try {
+            dispatch(setLoader(true));
             const response = await axios.get('api/auth/refresh', {withCredentials: true});
             dispatch(authUser(true));
             dispatch(setAuthData(response.data.userData.user));
+            dispatch(setLoader(false));
             localStorage.setItem('token', response.data.userData.accessToken);
         } catch (e) {
             console.log(e.response?.data);
