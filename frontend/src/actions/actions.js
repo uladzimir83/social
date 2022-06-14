@@ -5,11 +5,7 @@ export const ADD_PROFILE_DATA = 'ADD_PROFILE_DATA',
              CLEAN_NEWS_ARRAY = 'CLEAN_NEWS_ARRAY',
              USER_IS_AUTH = 'USER_IS_AUTH',
              SET_AUTH_DATA = 'SET_AUTH_DATA',
-<<<<<<< HEAD
-             SET_LOADER = 'SET_LOADER'
-=======
              SET_IS_LOADING = 'SET_IS_LOADING'
->>>>>>> f921be14238e08bd754c3e8f8e9a66649424668c
 
 
 export const setProfileData = (data) => ({
@@ -46,14 +42,7 @@ export const setAuthData = (authData) => ({
     authData,
 });
 
-<<<<<<< HEAD
-export const setLoader = (isLoading) => ({
-    type: SET_LOADER,
-    isLoading
-});
-=======
 export const setIsLoading = (isLoading) => ({
     type: SET_IS_LOADING,
     isLoading,
-})
->>>>>>> f921be14238e08bd754c3e8f8e9a66649424668c
+});
