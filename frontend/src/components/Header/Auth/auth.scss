@@ -169,3 +169,29 @@ input.auth__form__input::placeholder {
         cursor: default;
     }
 }
+
+.auth__profile {
+    display: flex;
+    align-items: center;
+}
+
+.auth__profile__photo {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: aliceblue;
+
+    img {
+        display: block;
+        width: 25px;
+        height: 22px;
+        margin: auto;
+    }
+}
+
+.auth__profile__item {
+    display: inline-block;
+    margin-right: 30px;
+}

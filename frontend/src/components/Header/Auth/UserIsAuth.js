@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../../asyncActions/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
+import userPhoto from '../../../img/icons/user_photo.svg';
 
 const UserIsAuth = (props) => {
     const dispatch = useDispatch();
@@ -14,14 +15,14 @@ const UserIsAuth = (props) => {
     return (
         <div className="auth__profile">
             <div className="auth__profile__photo">
-                <img src="" alt="" />
+                <img src={userPhoto} alt="user icon" />
             </div>
             <div className="auth__profile__nav">
                 <NavLink className="auth__profile__item" to="Profile">Hi,{context?.login || ' Dear User'}</NavLink>
-                <NavLink 
-                    className="auth__form__submit" 
+                <button 
+                    className="btn" 
                     to="/"
-                    onClick={() => {logoutHandler()}}>Log out</NavLink>
+                    onClick={() => {logoutHandler()}}>Log out</button>
             </div>
         </div>
     )
