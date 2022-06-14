@@ -1,6 +1,10 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+<<<<<<< HEAD
 import { setFullNews, setProfileData, authUser, setAuthData, setLoader } from "../actions/actions";
+=======
+import { setFullNews, setProfileData, authUser, setAuthData, setIsLoading } from "../actions/actions";
+>>>>>>> f921be14238e08bd754c3e8f8e9a66649424668c
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -33,10 +37,16 @@ export const checkAuth = () => {
             const response = await axios.get('api/auth/refresh', {withCredentials: true});
             dispatch(authUser(true));
             dispatch(setAuthData(response.data.userData.user));
+<<<<<<< HEAD
             dispatch(setLoader(false));
+=======
+            dispatch(setIsLoading(false));
+>>>>>>> f921be14238e08bd754c3e8f8e9a66649424668c
             localStorage.setItem('token', response.data.userData.accessToken);
         } catch (e) {
             console.log(e.response?.data);
+        } finally {
+            
         }
     }
 }
