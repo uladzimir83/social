@@ -1,15 +1,29 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { logout } from '../../../asyncActions/asyncActions';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useRef, useEffect }  from 'react';
+import { useSelector } from 'react-redux';
+import ProfilePanel from './Profile/ProfilePanel';
 import userPhoto from '../../../img/icons/user_photo.svg';
 
 const UserIsAuth = (props) => {
-    const dispatch = useDispatch();
+    
     const context = useSelector(state => state.auth.authData);
+    let [profilePanelState, setProfilePanelState] = useState(false);
+    let ref = useRef(null);
 
-    const logoutHandler = () => {
-        dispatch(logout());
+    useEffect(() => {
+        let clickOutsidePanel = (e) => {
+            if (ref.current && !ref.current.contains(e.target)) {
+                setProfilePanelState(false);
+            }
+        }
+
+        document.addEventListener('click', clickOutsidePanel,true);
+        return () => {
+            document.removeEventListener('click', clickOutsidePanel, true);
+        }
+    });
+
+    let toggleProfilePanel = () => {
+        setProfilePanelState(!profilePanelState);
     }
 
     return (
@@ -17,13 +31,14 @@ const UserIsAuth = (props) => {
             <div className="auth__profile__photo">
                 <img src={userPhoto} alt="user icon" />
             </div>
-            <div className="auth__profile__nav">
-                <NavLink className="auth__profile__item" to="Profile">Hi,{context?.login || ' Dear User'}</NavLink>
-                <button 
-                    className="btn" 
-                    to="/"
-                    onClick={() => {logoutHandler()}}>Log out</button>
+            <div 
+                className="auth__profile__link"
+                onClick={toggleProfilePanel}
+                ref={ref}
+            >
+                {`Hi,${context?.login}` || ' Dear User'}
             </div>
+            {profilePanelState && <ProfilePanel />}
         </div>
     )
 }

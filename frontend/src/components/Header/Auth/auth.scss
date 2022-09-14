@@ -191,7 +191,47 @@ input.auth__form__input::placeholder {
     }
 }
 
-.auth__profile__item {
+.auth__profile__link {
+    position: relative;
+    margin-right: 13px;
+    padding-right: 17px;
+    cursor: pointer;
+
+    &:after {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8px 5px 0 5px;
+        border-color: #397a93 transparent transparent transparent;
+    }
+}
+
+.auth__profile__panel {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 250px;
+    padding: 20px;
+    border-radius: 7px;
+    color: #000 !important;
+    background-color: aliceblue;
+    box-shadow: 0 1px 7px 0 rgba(135, 206, 235, .7);
+}
+
+.auth__profile__panel__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth__profile__panel__link {
     display: inline-block;
-    margin-right: 30px;
+    margin-bottom: 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
