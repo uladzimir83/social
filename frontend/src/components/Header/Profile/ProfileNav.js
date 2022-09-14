@@ -11,19 +11,17 @@ const ProfileNav = (props) => {
     }
 
   return (
-    <div>
-        <div className='profile__panel'>
-            <div className='profile__panel__list'>
-                <NavLink className='profile__panel__link' to="/Profile">Profile</NavLink>
-                <NavLink className='profile__panel__link' to="/">Advertising</NavLink>
-                <NavLink className='profile__panel__link' to="/">Settings</NavLink>
-                <NavLink 
+    <div className='profile__panel'>
+        <div className='profile__panel__list'>
+            <NavLink className='profile__panel__link' to="/Profile">Profile</NavLink>
+            <NavLink className='profile__panel__link' to="/">Advertising</NavLink>
+            <NavLink className='profile__panel__link' to="/">Settings</NavLink>
+            <NavLink className='profile__panel__link'
                     to="/"
                     onClick={() => {logoutHandler()}}
-                >
-                    Log out
-                </NavLink>
-            </div>
+            >
+                Log out
+            </NavLink>
         </div>
     </div>
   )

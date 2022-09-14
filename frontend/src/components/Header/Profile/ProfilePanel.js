@@ -34,7 +34,7 @@ const ProfilePanel = (props) => {
                 <img src={userPhoto} alt="user icon" />
             </div>
             <div 
-                className={clsx('header__profile__link', {['is__panel__open']: profilePanelState})}
+                className={clsx('header__profile__link', {'is__panel__open': profilePanelState})}
                 onClick={toggleProfilePanel}
                 ref={ref}
             >
