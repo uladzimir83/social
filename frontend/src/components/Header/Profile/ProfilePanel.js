@@ -29,14 +29,13 @@ const ProfilePanel = (props) => {
     }
 
     return (
-        <div className="header__profile">
+        <div className="header__profile" ref={ref}>
             <div className="header__profile__photo">
                 <img src={userPhoto} alt="user icon" />
             </div>
             <div 
                 className={clsx('header__profile__link', {'is__panel__open': profilePanelState})}
                 onClick={toggleProfilePanel}
-                ref={ref}
             >
                 {`Hi,${context?.login}` || ' Dear User'}
             </div>

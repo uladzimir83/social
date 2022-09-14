@@ -67,7 +67,9 @@
     display: inline-block;
     padding: 7px 20px;
     text-decoration: none;
+    color: #6a5acd;
     transition: all .3s;
+    cursor: pointer;
 
     &:hover {
         opacity: .5;

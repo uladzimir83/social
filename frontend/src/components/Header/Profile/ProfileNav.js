@@ -16,12 +16,11 @@ const ProfileNav = (props) => {
             <NavLink className='profile__panel__link' to="/Profile">Profile</NavLink>
             <NavLink className='profile__panel__link' to="/">Advertising</NavLink>
             <NavLink className='profile__panel__link' to="/">Settings</NavLink>
-            <NavLink className='profile__panel__link'
-                    to="/"
-                    onClick={() => {logoutHandler()}}
+            <div className='profile__panel__link'
+                onClick={logoutHandler}
             >
                 Log out
-            </NavLink>
+            </div>
         </div>
     </div>
   )
